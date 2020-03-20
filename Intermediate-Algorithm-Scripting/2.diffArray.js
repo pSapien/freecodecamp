@@ -8,19 +8,13 @@ function arrToDict(arr) {
   arr.forEach(v => dict[v] = v);
   return dict;
 }
+const diff = (source, target) => source.filter(v => !(v in target));
 
-function diffArray(arr1, arr2) { 
-  const dict1 = arrToDict(arr1);
-  const dict2 = arrToDict(arr2);
-  const diff = [];
-
-  arr1.forEach(elem1 => {
-    if (!(elem1 in dict2)) diff.push(elem1); 
-  });
-
-  arr2.forEach(elem2 => {
-    if (!(elem2 in dict1)) diff.push(elem2); 
-  });
-
-  return diff;
+function diffArray(arr1, arr2) {
+  return [
+    ...diff(arr1, arrToDict(arr2)),
+    ...diff(arr2, arrToDict(arr1)),
+  ];
 }
+
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5])); // [4]
