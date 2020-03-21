@@ -15,19 +15,18 @@ const AY = 'ay';
 const isVowel = letter => ['a', 'e', 'i', 'o', 'u'].includes(letter);
 
 function translatePigLatin(str) {
-  if (isVowel(str.charAt(0))) return str + 'w' + AY;
+  const firstLetter = str.charAt(0);
+  if (isVowel(firstLetter)) return str + 'w' + AY;
 
   const strArr = Array.from(str);
   const firstVowelIndex = strArr.findIndex(isVowel);
 
-  if (firstVowelIndex > 0) {
-    const beforeFirstVowel = strArr.slice(0, firstVowelIndex).join('');
-    const afterFirstVowel = strArr.slice(firstVowelIndex).join('');
+  const noVowel = firstVowelIndex < 0;
+  if (!noVowel) return str + AY;
 
-    return afterFirstVowel + beforeFirstVowel + AY;
-  }
-
-  return str + AY;
+  const beforeFirstVowel = strArr.slice(0, firstVowelIndex).join('');
+  const afterFirstVowel = strArr.slice(firstVowelIndex).join('');
+  return afterFirstVowel + beforeFirstVowel + AY;
 }
 
 console.log(translatePigLatin('california'));
