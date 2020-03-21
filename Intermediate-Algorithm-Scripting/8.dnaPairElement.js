@@ -15,9 +15,8 @@ const BASE_PAIRS = {
   "C": "G",
   "G": "C",
 }
+const getDnaPair = (dna) => BASE_PAIRS[dna];
 
-function pairElement(str) { 
-  return Array.from(str).map(dna => [dna, BASE_PAIRS[dna]]);
-}
+const pairElement = (str) => Array.from(str).map(dna => [dna, getDnaPair(dna)]);
 
 console.log(pairElement("GCG"));

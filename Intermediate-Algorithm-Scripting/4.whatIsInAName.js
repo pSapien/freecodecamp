@@ -9,9 +9,8 @@
 function whatIsInAName(collection, source) {
   const res = [];
 
-  collection.forEach(value => { 
-    const isPresent = checkIfPresent(value, source);
-    if (isPresent) res.push(value);
+  collection.forEach(value => {
+    if (checkIfPresent(value, source)) res.push(value);
   })
   
   return res;

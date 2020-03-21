@@ -11,22 +11,15 @@
  */
 
 const isUpper = str => str.toUpperCase() === str;
-const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+const firstLetterOf = str => str.charAt(0);
+const capitalize = str => firstLetterOf(str).toUpperCase() + str.slice(1);
+const makeCaseSame = (source, target) => isUpper(firstLetterOf(source)) ? capitalize(target) : target;
 
-function makeCaseSame(source, target) {
-  const sourceFirstLeter = source.charAt(0);
-  return isUpper(sourceFirstLeter)
-    ? capitalize(target)
-    : target;
-}
-
-function myReplace(str, before, after) {
-  return str.split(' ').map(word => {
-    return (word === before)
-      ? makeCaseSame(before, after)
-      : word
-  }).join(' ');
-}
+const myReplace = (str, before, after) =>
+  str
+    .split(' ')
+    .map(word => (word === before) ? makeCaseSame(before, after) : word)
+    .join(' ');
 
 console.log(
   myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")

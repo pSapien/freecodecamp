@@ -2,6 +2,8 @@
 
 const isUpper = str => str.toUpperCase() === str;
 const isAtoZ = str => str.match(/^[A-Za-z]+$/);
+const isSpace = str => str === ' ';
+const isHyphen = str => str === '-';
 
 function spinalCase(str) {
   let [first, ...rest] = str;
@@ -9,13 +11,17 @@ function spinalCase(str) {
 
   for (let i = 0; i < rest.length; i++) {
     const char = rest[i];
-    if (char === '-') res += char;
+    const prevChar = rest[i - 1]; 
+
+    if (isHyphen(char)) res += char;
+
     if (!isAtoZ(char)) continue;
 
-    if (isUpper(char) || rest[i - 1] === ' ') {
+    if (isUpper(char) || isSpace(prevChar)) {
       res += `-${char.toLowerCase()}`;
       continue;
     }
+
     res += char;
   }
 
