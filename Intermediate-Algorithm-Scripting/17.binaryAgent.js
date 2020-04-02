@@ -1,4 +1,3 @@
-// use String.fromCharPoint(65) to get ASCII
 
 const binaryAgent = (binaries) =>
     binaries
