@@ -16,6 +16,7 @@ function isPrime(num) {
 
 function sumPrimes(num) {
   let sum = 0;
+
   for (let i = 0; i <= num; i++)
     if (isPrime(i)) sum += i;
 
