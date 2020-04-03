@@ -14,15 +14,15 @@ const replaceSpecialCharAndLowerCased = string => string.replace(/[^a-zA-Z0-9]/g
 
 function palindrome(str) {
   const res = replaceSpecialCharAndLowerCased(str).split('');
-  let visitedLeft = new Map();
+  let visitedLeft = {};
   const len = res.length;
   const mid = Math.floor(len / 2);
 
   for (let i = 0; i < res.length; i++) {
-    if (i <= mid) visitedLeft.set(i, res[i]);
+    if (i <= mid) visitedLeft[i] = res[i];
 
     if (i >= mid) {
-      const visitedLeftFromMid = visitedLeft.get(len - i - 1);
+      const visitedLeftFromMid = visitedLeft[len - i - 1];
       const rightFromMid = res[i];
       if (visitedLeftFromMid !== rightFromMid) return false;
     }
