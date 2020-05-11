@@ -22,7 +22,7 @@ function smallestCommons(arr) {
 
   let startFrom = last + 1;
   while(true) {
-    const isLcm = range.every(num => startFrom % num === 0);
+    const isLcm = range.every(num => startFrom % num);
     if(isLcm) return startFrom;
     startFrom++;
   }
