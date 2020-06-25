@@ -15,14 +15,14 @@ const TOTAL_ALPHABLETS_COUNT = 26;
 const MID = STARTING_ASCII + (TOTAL_ALPHABLETS_COUNT / 2);
 
 const isUpperCase = char => char.toUpperCase() === char;
-
-const ALPHABET_REGEX = /[A-Za-z]/;
+const isAlphabet = char => char.match(/[A-Za-z]/);
 
 function decode(char) {
   const charCode = char.toLowerCase().charCodeAt(0);
   let decodedCharCode = 0;
   if (charCode > MID) {
-    decodedCharCode = STARTING_ASCII + (SHIFTED - (ENDING_ASCII - charCode));
+    const offsetRight = SHIFTED - (ENDING_ASCII - charCode);
+    decodedCharCode = STARTING_ASCII + offsetRight;
   } else {
     decodedCharCode = charCode + SHIFTED;
   }
@@ -34,7 +34,7 @@ function rot13(str) {
   let res = '';
 
   for (let char of str) {
-    res += char.match(ALPHABET_REGEX) ? decode(char) : char;
+    res += isAlphabet(char) ? decode(char) : char;
   }
 
   return res;
