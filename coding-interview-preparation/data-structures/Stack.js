@@ -12,7 +12,7 @@ class Stack {
   }
 
   peek() {
-    if (this.collection.length === 0) return undefined;
+    if (this.isEmpty()) return undefined;
     return this.collection[0];
   }
 
